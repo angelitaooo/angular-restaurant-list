@@ -1,0 +1,25 @@
+<div class="wrapper">
+	<h2>PLATES</h2>
+	<p></p>
+	<ul class="plates" >
+		<li>
+			<input type="checkbox" value="test"/>
+		</li>
+		<li *ngFor="let product of products"> 
+			<input #checkProduct type="checkbox" [checked]="product.active"/> 
+			<label (click)="product.active=!product.active">{{ product.name }}</label>
+		</li>
+	</ul>
+	<form class="add-items">
+		<!--<input type="text" name="item" placeholder="Item Name" #productname >-->
+		<input type="text" name="item" placeholder="Item Name" [(ngModel)]="name" >
+		<input type="button" value="+ Add Item" (click) = "addItem()">
+
+		<div>
+			<br/>
+			<input type="button" value="Delete all" (click) = "deleteAll()">
+			<input type="button" value="Uncheck all" (click) = "uncheckAll()">
+			<input type="button" value="Check all" (click) = "checkAll()">
+		</div>
+	</form>
+</div>
