@@ -2,11 +2,8 @@
 	<h2>PLATES</h2>
 	<p></p>
 	<ul class="plates" >
-		<li>
-			<input type="checkbox" value="test"/>
-		</li>
 		<li *ngFor="let product of products"> 
-			<input #checkProduct type="checkbox" [checked]="product.active"/> 
+			<input type="checkbox" [checked]="product.active"/> 
 			<label (click)="product.active=!product.active">{{ product.name }}</label>
 		</li>
 	</ul>

@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Product {
+class Product {
   name: string;
   active: boolean;
+  constructor(name, active){
+    this.name = name;
+    this.active = active;
+  }  
 }
 
 @Component({
@@ -10,27 +14,16 @@ interface Product {
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   name: string = "";
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-   products: Product[] = [
-        {
-            name:'Mazorca',
-            active: false,
-        },
-        {
-            name:'Queso',
-            active: false,
-        },
-    ];
+  products: Product[] = [
+    new Product('Mazorca', false),   
+    new Product('queso', false)
+  ];
 
     addItem() {
-        this.products.push({name:this.name, active:false});
+        this.products.push(new Product(this.name, false));
         this.name = "";
     }
 
@@ -39,15 +32,14 @@ export class ListComponent implements OnInit {
     }
 
     uncheckAll() {
-        for (let product of this.products) {
-            product.active = false;
-        }
+      this.products.forEach(product => {
+        product.active = false;
+      });
     }
 
     checkAll() {
-        for (let product of this.products) {
-            product.active = true;
-        }
+        this.products.forEach(product => {
+        product.active = true;
+      });
     }
-
 }
